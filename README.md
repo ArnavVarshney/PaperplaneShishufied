@@ -8,4 +8,4 @@
 <p align="center"><a href="https://heroku.com/deploy?template=https://github.com/ArnavVarshney/PaperplaneShishufied/"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a></p>
 <p align="center">&nbsp;</p>
 <h2 align="center">License</h2>
-<p align="center"><a href="https://github.com/ArnavVarshney/PaperplaneShishufied/LICENSE">Raphielscape Public License</a> - Version 1.c, June 2019</p>
+<p align="center"><a href="https://github.com/ArnavVarshney/PaperplaneShishufied/LICENSE">GNU General Public License v3.0</p>
