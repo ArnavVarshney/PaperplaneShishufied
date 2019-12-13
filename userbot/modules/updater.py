@@ -14,7 +14,7 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
 from userbot import CMD_HELP, bot
-from userbot.events import register, errors_handler
+from userbot.events import register
 
 
 async def gen_chlog(repo, diff):
