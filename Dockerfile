@@ -81,6 +81,7 @@ ENV PATH="/root/userbot/bin:$PATH"
 #
 # Install requirements
 #
+# wheel had to be installed separetely to prevent errors during deployment
 RUN pip3 install wheel
 RUN pip install wheel
 RUN pip3 install -r requirements.txt
