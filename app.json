@@ -1,6 +1,6 @@
 {
   "name": "Telegram User Bot",
-  "description": "[Paperplane Shishufied] A modular Telegram userbot running on Python 3 with an sqlalchemy database.",
+  "description": "[Paperplane Shishufied] A modular Telegram Bot based on the original Paperplane and Paperplane Extended.",
   "logo": "https://i.imgur.com/ATSG4w3.png",
   "keywords": [
     "telegram",
@@ -11,7 +11,6 @@
   ],
   "repository": "https://github.com/ArnavVarshney/PaperplaneShishufied",
   "website": "https://telegra.ph/How-to-host-a-Telegram-Userbot-07-24",
-  "success_url": "https://t.me/PaperplaneExtended",
   "stack": "container",
   "env": {
     "API_KEY": {
@@ -54,7 +53,7 @@
       "value": "False"
     },
     "BOTLOG_CHATID": {
-      "description": "ChatID of the Log group. Set it to '0' if BOTLOG = False and/or if LOGSPAMMER = False.",
+      "description": "ChatID of the Log group. Set it to '0' if BOTLOG = False",
       "value": "0"
     },
     "CONSOLE_LOGGER_VERBOSE": {
@@ -63,7 +62,7 @@
     },
     "PM_AUTO_BAN": {
       "description": "PM Auto-Ban Feature Switch. Also known as the 'bleep blop, this is a bot...' module.",
-      "value": "False"
+      "value": "True"
     },
     "YOUTUBE_API_KEY": {
       "description": "YouTube Data API Key for .yt command. Get from https://console.cloud.google.com",
@@ -79,11 +78,11 @@
     },
     "ANTI_SPAMBOT": {
       "description": "Kicks spambots from groups after they join. [Requires admin powers in groups to kick.]",
-      "value": "False"
+      "value": "True"
     },
     "ANTI_SPAMBOT_SHOUT": {
       "description": "Report spambots to @admins in groups after they join, just in case when you don't have admin powers to kick that shit yourself.",
-      "value": "False"
+      "value": "True"
     },
     "TMP_DOWNLOAD_DIRECTORY": {
       "description": "Download location for many modules (GDrive, .download etc..)",
@@ -119,7 +118,7 @@
     },
     "DEFAULT_BIO": {
       "description": "Default profile bio.",
-      "value": "[PM = Report Spam] I ❤ ️@PaperplaneExtended",
+      "value": "Somewhere, in space, this could all be happening right now. A long time ago in a galaxy far, far away...",
       "required": false
     },
     "ALIVE_NAME": {
@@ -129,18 +128,6 @@
     "G_DRIVE_CLIENT_SECRET": {
       "description": "Enter Your Client Secret for Google Drive.",
       "required": false
-    },
-    "G_DRIVE_AUTH_TOKEN_DATA": {
-      "description": "Enter the Google Drive authentication data, as a JSON structure.",
-      "required": false
-    },
-    "WEATHER_DEFCITY": {
-      "description": "Set the default city for the userbot's weather module.",
-      "required": false
-    },
-    "LOGSPAMMER": {
-      "description": "Set this to True in case you want the error logs to be stored in the userbot log group, instead of spitting out the file in the current chat, requires a valid BOTLOG_CHATID to be set.",
-      "value": "True"
     }
   },
   "addons": [
@@ -150,4 +137,5 @@
         "version": "9.5"
       }
     }
+  ]
 }
