@@ -21,7 +21,6 @@ RUN apk add --no-cache --update \
     sudo \
     aria2 \
     util-linux \
-    libevent \
     chromium \
     chromium-chromedriver \
     jpeg-dev \
@@ -50,9 +49,7 @@ RUN apk add --no-cache --update \
     ffmpeg \
     sqlite-dev \
     sudo \
-    zlib-dev \
-    jpeg-dev \
-    python-dev
+    zlib-dev
 
 
 RUN python3 -m ensurepip \
@@ -65,8 +62,8 @@ RUN python3 -m ensurepip \
 #
 # Clone repo and prepare working directory
 #
-RUN git clone -b sql-extended https://github.com/AvinashReddy3108/PaperplaneExtended /root/userbot
-RUN mkdir /root/userbot/bin/
+RUN git clone -b sql-dirty https://github.com/ArnavVarshney/PaperplaneShishufied /root/userbot
+RUN mkdir /root/userbot/bin
 WORKDIR /root/userbot/
 
 #
@@ -75,7 +72,16 @@ WORKDIR /root/userbot/
 COPY ./sample_config.env ./userbot.session* ./config.env* /root/userbot/
 
 #
+# Clone helper scripts
+#
+RUN curl -s https://raw.githubusercontent.com/yshalsager/megadown/master/megadown -o /root/userbot/bin/megadown && sudo chmod a+x /root/userbot/bin/megadown
+RUN curl -s https://raw.githubusercontent.com/yshalsager/cmrudl.py/master/cmrudl.py -o /root/userbot/bin/cmrudl && sudo chmod a+x /root/userbot/bin/cmrudl
+ENV PATH="/root/userbot/bin:$PATH"
+
+#
 # Install requirements
 #
+RUN pip3 install wheel
+RUN pip install wheel
 RUN pip3 install -r requirements.txt
 CMD ["python3","-m","userbot"]

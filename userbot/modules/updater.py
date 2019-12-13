@@ -13,8 +13,8 @@ import sys
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from userbot import CMD_HELP, bot, HEROKU_MEMEZ, HEROKU_APIKEY, HEROKU_APPNAME
-from userbot.events import register
+from userbot import CMD_HELP, bot
+from userbot.events import register, errors_handler
 
 
 async def gen_chlog(repo, diff):
@@ -34,10 +34,11 @@ async def is_off_br(br):
 
 
 @register(outgoing=True, pattern="^.update(?: |$)(.*)")
+@errors_handler
 async def upstream(ups):
     "For .update command, check if the bot is up to date, update if specified"
     await ups.edit("`Checking for updates, please wait....`")
-    conf = ups.pattern_match.group(1).lower()
+    conf = ups.pattern_match.group(1)
     off_repo = 'https://github.com/AvinashReddy3108/PaperplaneExtended.git'
 
     try:
@@ -46,19 +47,14 @@ async def upstream(ups):
     except NoSuchPathError as error:
         await ups.edit(f'{txt}\n`directory {error} is not found`')
         return
+    except InvalidGitRepositoryError as error:
+        await ups.edit(
+            f'{txt}\n`directory {error} does not seems to be a git repository`'
+        )
+        return
     except GitCommandError as error:
         await ups.edit(f'{txt}\n`Early failure! {error}`')
         return
-    except InvalidGitRepositoryError:
-        repo = Repo.init()
-        await ups.edit(
-            "`Warning: Force-Syncing to the latest stable code from repo.`\
-            \nI may lose my downloaded files during this update."
-        )
-        origin = repo.create_remote('upstream', off_repo)
-        origin.fetch()
-        repo.create_head('sql-extended', origin.refs.master)
-        repo.heads.master.checkout(True)
 
     ac_br = repo.active_branch.name
     if not await is_off_br(ac_br):
@@ -102,6 +98,7 @@ async def upstream(ups):
 
     await ups.edit('`New update found, updating...`')
     ups_rem.fetch(ac_br)
+    repo.git.reset('--hard', 'FETCH_HEAD')
     await ups.edit('`Successfully Updated!\n'
                    'Bot is restarting... Wait for a second!`')
     await bot.disconnect()
