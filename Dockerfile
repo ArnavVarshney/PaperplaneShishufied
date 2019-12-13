@@ -62,7 +62,7 @@ RUN python3 -m ensurepip \
 #
 # Clone repo and prepare working directory
 #
-RUN git clone -b sql-dirty https://github.com/ArnavVarshney/PaperplaneShishufied /root/userbot
+RUN git clone https://github.com/ArnavVarshney/PaperplaneShishufied /root/userbot
 RUN mkdir /root/userbot/bin
 WORKDIR /root/userbot/
 
