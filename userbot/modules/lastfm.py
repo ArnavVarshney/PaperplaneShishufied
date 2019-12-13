@@ -1,21 +1,14 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-
 from asyncio import sleep
-from pylast import User, WSError
-from re import sub
-from urllib import parse
 from os import environ
+from re import sub
 from sys import setrecursionlimit
+from urllib import parse
 
+from pylast import User, WSError
 from telethon.errors import AboutTooLongError
+from telethon.errors.rpcerrorlist import FloodWaitError
 from telethon.tl.functions.account import UpdateProfileRequest
 from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import User as Userbot
-from telethon.errors.rpcerrorlist import FloodWaitError
 
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, DEFAULT_BIO, BIO_PREFIX, lastfm, LASTFM_USERNAME, bot
 from userbot.events import register
@@ -42,6 +35,8 @@ else:
 LASTFMCHECK = False
 RUNNING = False
 LastLog = False
+
+
 # ================================================
 
 
@@ -70,7 +65,6 @@ async def last_fm(lastFM):
             output = f"[{LASTFM_USERNAME}]({username}) __is now listening to:__\n\n• [{playing}]({rectrack})\n`{tags}`"
     else:
         recent = User(LASTFM_USERNAME, lastfm).get_recent_tracks(limit=3)
-        playing = User(LASTFM_USERNAME, lastfm).get_now_playing()
         output = f"[{LASTFM_USERNAME}]({username}) __was last listening to:__\n\n"
         for i, track in enumerate(recent):
             print(i)
@@ -117,8 +111,6 @@ async def get_curr_track(lfmbio):
     global LASTFMCHECK
     global RUNNING
     global USER_ID
-    oldartist = ""
-    oldsong = ""
     while LASTFMCHECK:
         try:
             if USER_ID == 0:
@@ -218,10 +210,10 @@ async def lastlog(lstlog):
 
 CMD_HELP.update({
     'lastfm':
-    ".lastfm\
-    \nUsage: Shows currently scrobbling track or most recent scrobbles if nothing is playing.\
-    \n\nlastbio: .lastbio <on/off>\
-    \nUsage: Enables/Disables last.fm current playing to bio.\
-    \n\nlastlog: .lastlog <on/off>\
-    \nUsage: Enable/Disable last.fm bio logging in the bot-log group."
+        ".lastfm\
+        \nUsage: Shows currently scrobbling track or most recent scrobbles if nothing is playing.\
+        \n\nlastbio: .lastbio <on/off>\
+        \nUsage: Enables/Disables last.fm current playing to bio.\
+        \n\nlastlog: .lastlog <on/off>\
+        \nUsage: Enable/Disable last.fm bio logging in the bot-log group."
 })

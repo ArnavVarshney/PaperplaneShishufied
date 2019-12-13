@@ -1,6 +1,7 @@
-from userbot.events import register
-from userbot import CMD_HELP, bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
 from telethon.events import ChatAction
+
+from userbot import CMD_HELP, bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
+from userbot.events import register
 
 
 @bot.on(ChatAction)
@@ -17,7 +18,7 @@ async def welcome_to_chat(event):
         user_left=False,
         user_kicked=False"""
         if (event.user_joined
-                or event.user_added) and not (await event.get_user()).bot:
+            or event.user_added) and not (await event.get_user()).bot:
             if CLEAN_WELCOME:
                 try:
                     await event.client.delete_messages(event.chat_id,
@@ -152,14 +153,14 @@ async def del_welcome(event):
 
 CMD_HELP.update({
     "welcome":
-    "\
-.setwelcome <welcome message> or reply to a message with .setwelcome\
-\nUsage: Saves the message as a welcome note in the chat.\
-\n\nAvailable variables for formatting welcome messages :\
-\n`{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`\
-\n\n.checkwelcome\
-\nUsage: Check whether you have a welcome note in the chat.\
-\n\n.rmwelcome\
-\nUsage: Deletes the welcome note for the current chat.\
-"
+        "\
+    .setwelcome <welcome message> or reply to a message with .setwelcome\
+    \nUsage: Saves the message as a welcome note in the chat.\
+    \n\nAvailable variables for formatting welcome messages :\
+    \n`{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`\
+    \n\n.checkwelcome\
+    \nUsage: Check whether you have a welcome note in the chat.\
+    \n\n.rmwelcome\
+    \nUsage: Deletes the welcome note for the current chat.\
+    "
 })

@@ -1,7 +1,3 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
 """
 Userbot module to help you manage a group
 """
@@ -18,12 +14,12 @@ from telethon.tl.functions.channels import (EditAdminRequest,
                                             EditBannedRequest,
                                             EditPhotoRequest)
 from telethon.tl.functions.messages import UpdatePinnedMessageRequest
-from telethon.tl.types import (PeerChannel, ChannelParticipantsAdmins,
+from telethon.tl.types import (ChannelParticipantsAdmins,
                                ChatAdminRights, ChatBannedRights,
                                MessageEntityMentionName, MessageMediaPhoto,
                                ChannelParticipantsBots)
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
 
 # =================== CONSTANT ===================
@@ -65,6 +61,8 @@ UNBAN_RIGHTS = ChatBannedRights(
 MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
+
+
 # ================================================
 
 
@@ -96,7 +94,7 @@ async def set_group_photo(gpic):
         try:
             await gpic.client(
                 EditPhotoRequest(gpic.chat_id, await
-                                 gpic.client.upload_file(photo)))
+                gpic.client.upload_file(photo)))
             await gpic.edit(CHAT_PP_CHANGED)
 
         except PhotoCropSizeSmallError:
@@ -152,8 +150,8 @@ async def promote(promt):
     if BOTLOG:
         await promt.client.send_message(
             BOTLOG_CHATID, "#PROMOTE\n"
-            f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-            f"CHAT: {promt.chat.title}(`{promt.chat_id}`)")
+                           f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+                           f"CHAT: {promt.chat.title}(`{promt.chat_id}`)")
 
 
 @register(outgoing=True, pattern="^.demote(?: |$)(.*)", groups_only=True)
@@ -201,8 +199,8 @@ async def demote(dmod):
     if BOTLOG:
         await dmod.client.send_message(
             BOTLOG_CHATID, "#DEMOTE\n"
-            f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-            f"CHAT: {dmod.chat.title}(`{dmod.chat_id}`)")
+                           f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+                           f"CHAT: {dmod.chat.title}(`{dmod.chat_id}`)")
 
 
 @register(outgoing=True, pattern="^.ban(?: |$)(.*)", groups_only=True)
@@ -257,8 +255,8 @@ async def ban(bon):
     if BOTLOG:
         await bon.client.send_message(
             BOTLOG_CHATID, "#BAN\n"
-            f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-            f"CHAT: {bon.chat.title}(`{bon.chat_id}`)")
+                           f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+                           f"CHAT: {bon.chat.title}(`{bon.chat_id}`)")
 
 
 @register(outgoing=True, pattern="^.unban(?: |$)(.*)", groups_only=True)
@@ -292,8 +290,8 @@ async def nothanos(unbon):
         if BOTLOG:
             await unbon.client.send_message(
                 BOTLOG_CHATID, "#UNBAN\n"
-                f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-                f"CHAT: {unbon.chat.title}(`{unbon.chat_id}`)")
+                               f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+                               f"CHAT: {unbon.chat.title}(`{unbon.chat_id}`)")
     except UserIdInvalidError:
         await unbon.edit("`Uh oh my unban logic broke!`")
 
@@ -352,8 +350,8 @@ async def spider(spdr):
             if BOTLOG:
                 await spdr.client.send_message(
                     BOTLOG_CHATID, "#MUTE\n"
-                    f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-                    f"CHAT: {spdr.chat.title}(`{spdr.chat_id}`)")
+                                   f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+                                   f"CHAT: {spdr.chat.title}(`{spdr.chat_id}`)")
         except UserIdInvalidError:
             return await spdr.edit("`Uh oh my mute logic broke!`")
 
@@ -402,8 +400,8 @@ async def unmoot(unmot):
         if BOTLOG:
             await unmot.client.send_message(
                 BOTLOG_CHATID, "#UNMUTE\n"
-                f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-                f"CHAT: {unmot.chat.title}(`{unmot.chat_id}`)")
+                               f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+                               f"CHAT: {unmot.chat.title}(`{unmot.chat_id}`)")
 
 
 @register(incoming=True, disable_edited=True)
@@ -476,8 +474,8 @@ async def ungmoot(un_gmute):
         if BOTLOG:
             await un_gmute.client.send_message(
                 BOTLOG_CHATID, "#UNGMUTE\n"
-                f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-                f"CHAT: {un_gmute.chat.title}(`{un_gmute.chat_id}`)")
+                               f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+                               f"CHAT: {un_gmute.chat.title}(`{un_gmute.chat_id}`)")
 
 
 @register(outgoing=True, pattern="^.gmute(?: |$)(.*)", groups_only=True)
@@ -520,8 +518,8 @@ async def gspider(gspdr):
         if BOTLOG:
             await gspdr.client.send_message(
                 BOTLOG_CHATID, "#GMUTE\n"
-                f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-                f"CHAT: {gspdr.chat.title}(`{gspdr.chat_id}`)")
+                               f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+                               f"CHAT: {gspdr.chat.title}(`{gspdr.chat_id}`)")
 
 
 @register(outgoing=True, pattern="^.zombies(?: |$)(.*)", groups_only=True)
@@ -590,7 +588,7 @@ async def rm_deletedacc(show):
     if BOTLOG:
         await show.client.send_message(
             BOTLOG_CHATID, "#CLEANUP\n"
-            f"Cleaned **{del_u}** deleted account(s) !!\
+                           f"Cleaned **{del_u}** deleted account(s) !!\
             \nCHAT: {show.chat.title}(`{show.chat_id}`)")
 
 
@@ -706,9 +704,9 @@ async def pin(msg):
     if BOTLOG:
         await msg.client.send_message(
             BOTLOG_CHATID, "#PIN\n"
-            f"ADMIN: [{user.first_name}](tg://user?id={user.id})\n"
-            f"CHAT: {msg.chat.title}(`{msg.chat_id}`)\n"
-            f"LOUD: {not is_silent}")
+                           f"ADMIN: [{user.first_name}](tg://user?id={user.id})\n"
+                           f"CHAT: {msg.chat.title}(`{msg.chat_id}`)\n"
+                           f"LOUD: {not is_silent}")
 
 
 @register(outgoing=True, pattern="^.kick(?: |$)(.*)", groups_only=True)
@@ -749,8 +747,8 @@ async def kick(usr):
     if BOTLOG:
         await usr.client.send_message(
             BOTLOG_CHATID, "#KICK\n"
-            f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-            f"CHAT: {usr.chat.title}(`{usr.chat_id}`)\n")
+                           f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+                           f"CHAT: {usr.chat.title}(`{usr.chat_id}`)\n")
 
 
 @register(outgoing=True, pattern="^.users ?(.*)", groups_only=True)
@@ -845,30 +843,30 @@ async def get_user_from_id(user, event):
 
 CMD_HELP.update({
     "admin":
-    ".promote <username/userid> : <custom rank (optional)> (or) reply to a message with .promote <rank (optional)>\
-\nUsage: Provides admin rights to the person in the chat.\
-\n\n.demote <username/userid> (or) reply to a message with .demote\
-\nUsage: Revokes the person's admin permissions in the chat.\
-\n\n.ban <username/userid> : <reason (optional)> (or) reply to a message with .ban <reason (optional)>\
-\nUsage: Bans the person off your chat.\
-\n\n.unban <username/userid> (or) reply to a message with .unban\
-\nUsage: Removes the ban from the person in the chat.\
-\n\n.mute <username/userid> : <reason (optional)> reply to a message with .mute <reason (optional)>\
-\nUsage: Mutes the person in the chat, works on admins too.\
-\n\n.unmute <username/userid> (or) reply to a message with .unmute\
-\nUsage: Removes the person from the muted list.\
-\n\n.gmute <username/userid> : <reason (optional)> (or) reply to a message with .gmute <reason (optional)>\
-\nUsage: Mutes the person in all groups you have in common with them.\
-\n\n.ungmute <username/userid> (or) reply to a message with .ungmute\
-\nUsage: Removes the person from the global mute list.\
-\n\n.delusers\
-\nUsage: Searches for deleted accounts in a group. Use .delusers clean to remove deleted accounts from the group.\
-\n\n.admins\
-\nUsage: Retrieves a list of admins in the chat.\
-\n\n.bots\
-\nUsage: Retrieves a list of bots in the chat.\
-\n\n.users or .users <search query>\
-\nUsage: Retrieves all (or queried) users in the chat.\
-\n\n.setgpic <reply to image>\
-\nUsage: Changes the group's display picture."
+        ".promote <username/userid> : <custom rank (optional)> (or) reply to a message with .promote <rank (optional)>\
+    \nUsage: Provides admin rights to the person in the chat.\
+    \n\n.demote <username/userid> (or) reply to a message with .demote\
+    \nUsage: Revokes the person's admin permissions in the chat.\
+    \n\n.ban <username/userid> : <reason (optional)> (or) reply to a message with .ban <reason (optional)>\
+    \nUsage: Bans the person off your chat.\
+    \n\n.unban <username/userid> (or) reply to a message with .unban\
+    \nUsage: Removes the ban from the person in the chat.\
+    \n\n.mute <username/userid> : <reason (optional)> reply to a message with .mute <reason (optional)>\
+    \nUsage: Mutes the person in the chat, works on admins too.\
+    \n\n.unmute <username/userid> (or) reply to a message with .unmute\
+    \nUsage: Removes the person from the muted list.\
+    \n\n.gmute <username/userid> : <reason (optional)> (or) reply to a message with .gmute <reason (optional)>\
+    \nUsage: Mutes the person in all groups you have in common with them.\
+    \n\n.ungmute <username/userid> (or) reply to a message with .ungmute\
+    \nUsage: Removes the person from the global mute list.\
+    \n\n.delusers\
+    \nUsage: Searches for deleted accounts in a group. Use .delusers clean to remove deleted accounts from the group.\
+    \n\n.admins\
+    \nUsage: Retrieves a list of admins in the chat.\
+    \n\n.bots\
+    \nUsage: Retrieves a list of bots in the chat.\
+    \n\n.users or .users <search query>\
+    \nUsage: Retrieves all (or queried) users in the chat.\
+    \n\n.setgpic <reply to image>\
+    \nUsage: Changes the group's display picture."
 })

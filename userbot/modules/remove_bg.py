@@ -1,17 +1,11 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-
-# (c) Shrimadhav U K - UniBorg
-# Thanks to Prakasaka for porting.
-
 import io
 import os
+
 import requests
-from userbot.events import register
 from telethon.tl.types import MessageMediaPhoto
+
 from userbot import CMD_HELP, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY
+from userbot.events import register
 
 
 @register(outgoing=True, pattern="^.rbg(?: |$)(.*)")
@@ -98,6 +92,6 @@ async def ReTrieveURL(input_url):
 
 CMD_HELP.update({
     "rbg":
-    ".rbg <Link to Image> or reply to any image (Warning: does not work on stickers.)\
-\nUsage: Removes the background of images, using remove.bg API"
+        ".rbg <Link to Image> or reply to any image (Warning: does not work on stickers.)\
+    \nUsage: Removes the background of images, using remove.bg API"
 })

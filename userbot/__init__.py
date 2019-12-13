@@ -1,20 +1,11 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-""" Userbot initialization. """
-
 import os
-
-from sys import version_info
-from logging import basicConfig, getLogger, INFO, DEBUG
 from distutils.util import strtobool as sb
+from logging import basicConfig, getLogger, INFO, DEBUG
+from sys import version_info
 
-from pylast import LastFMNetwork, md5
-from pySmartDL import SmartDL
 from dotenv import load_dotenv
-from requests import get
+from pySmartDL import SmartDL
+from pylast import LastFMNetwork, md5
 from telethon import TelegramClient
 from telethon.sessions import StringSession
 
@@ -39,7 +30,6 @@ if version_info[0] < 3 or version_info[1] < 6:
     quit(1)
 
 # Check if the config was edited by using the already used variable.
-# Basically, its the 'virginity check' for the config file ;)
 CONFIG_CHECK = os.environ.get(
     "___________PLOX_______REMOVE_____THIS_____LINE__________", None)
 
@@ -135,22 +125,20 @@ if not os.path.exists('bin'):
 
 binaries = {
     "https://raw.githubusercontent.com/yshalsager/megadown/master/megadown":
-    "bin/megadown",
+        "bin/megadown",
     "https://raw.githubusercontent.com/yshalsager/cmrudl.py/master/cmrudl.py":
-    "bin/cmrudl"
+        "bin/cmrudl"
 }
 
 for binary, path in binaries.items():
-    downloader = SmartDL(binary, path, progress_bar=False)
+    downloader = SmartDL(binary, path, progress_bar=True)
     downloader.start()
     os.chmod(path, 0o755)
 
 # 'bot' variable
 if STRING_SESSION:
-    # pylint: disable=invalid-name
     bot = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
 else:
-    # pylint: disable=invalid-name
     bot = TelegramClient("userbot", API_KEY, API_HASH)
 
 

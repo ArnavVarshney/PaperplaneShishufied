@@ -1,26 +1,16 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """ Userbot module for changing your Telegram profile details. """
 
 import os
 
 from telethon.errors import ImageProcessFailedError, PhotoCropSizeSmallError
-
 from telethon.errors.rpcerrorlist import (PhotoExtInvalidError,
                                           UsernameOccupiedError)
-
 from telethon.tl.functions.account import (UpdateProfileRequest,
                                            UpdateUsernameRequest)
-
 from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest
-
 from telethon.tl.functions.photos import (DeletePhotosRequest,
                                           GetUserPhotosRequest,
                                           UploadProfilePhotoRequest)
-
 from telethon.tl.types import InputPhoto, MessageMediaPhoto, User, Chat, Channel
 
 from userbot import bot, CMD_HELP
@@ -37,6 +27,8 @@ BIO_SUCCESS = "```Successfully edited Bio.```"
 NAME_OK = "```Your name was succesfully changed.```"
 USERNAME_SUCCESS = "```Your username was succesfully changed.```"
 USERNAME_TAKEN = "```This username is already taken.```"
+
+
 # ===============================================================
 
 
@@ -180,18 +172,18 @@ async def remove_profilepic(delpfp):
 
 CMD_HELP.update({
     "profile":
-    ".username <new_username>\
-\nUsage: Changes your Telegram username.\
-\n\n.name <firstname> or .name <firstname> <lastname>\
-\nUsage: Changes your Telegram name.(First and last name will get split by the first space)\
-\n\n.setpfp\
-\nUsage: Reply with .setpfp to an image to change your Telegram profie picture.\
-\n\n.setbio <new_bio>\
-\nUsage: Changes your Telegram bio.\
-\n\n.delpfp or .delpfp <number>/<all>\
-\nUsage: Deletes your Telegram profile picture(s).\
-\n\n.reserved\
-\nUsage: Shows usernames reserved by you.\
-\n\n.count\
-\nUsage: Counts your groups, chats, bots etc..."
+        ".username <new_username>\
+    \nUsage: Changes your Telegram username.\
+    \n\n.name <firstname> or .name <firstname> <lastname>\
+    \nUsage: Changes your Telegram name.(First and last name will get split by the first space)\
+    \n\n.setpfp\
+    \nUsage: Reply with .setpfp to an image to change your Telegram profie picture.\
+    \n\n.setbio <new_bio>\
+    \nUsage: Changes your Telegram bio.\
+    \n\n.delpfp or .delpfp <number>/<all>\
+    \nUsage: Deletes your Telegram profile picture(s).\
+    \n\n.reserved\
+    \nUsage: Shows usernames reserved by you.\
+    \n\n.count\
+    \nUsage: Counts your groups, chats, bots etc..."
 })

@@ -1,12 +1,8 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """ Userbot module for filter commands """
 
 from asyncio import sleep
-from re import fullmatch, IGNORECASE, escape
+from re import fullmatch, IGNORECASE
+
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
 
@@ -98,7 +94,6 @@ async def remove_a_filter(r_handler):
 async def kick_marie_filter(event):
     """ For .rmfilters command, allows you to kick all \
         Marie(or her clones) filters from a chat. """
-    cmd = event.text[0]
     bot_type = event.pattern_match.group(1).lower()
     if bot_type not in ["marie", "rose"]:
         await event.edit("`That bot is not yet supported!`")
@@ -143,14 +138,14 @@ async def filters_active(event):
 
 CMD_HELP.update({
     "filter":
-    ".filters\
-    \nUsage: Lists all active userbot filters in a chat.\
-    \n\n.filter <keyword> <reply text> or reply to a message with .filter <keyword>\
-    \nUsage: Saves the replied message as a reply to the 'keyword'.\
-    \nThe bot will reply to the message whenever 'keyword' is mentioned.\
-    \nWorks with everything from files to stickers.\
-    \n\n.stop <filter>\
-    \nUsage: Stops the specified filter.\
-    \n\n.rmbotfilters <marie/rose>\
-    \nUsage: Removes all filters of admin bots (Currently supported: Marie, Rose and their clones.) in the chat."
+        ".filters\
+        \nUsage: Lists all active userbot filters in a chat.\
+        \n\n.filter <keyword> <reply text> or reply to a message with .filter <keyword>\
+        \nUsage: Saves the replied message as a reply to the 'keyword'.\
+        \nThe bot will reply to the message whenever 'keyword' is mentioned.\
+        \nWorks with everything from files to stickers.\
+        \n\n.stop <filter>\
+        \nUsage: Stops the specified filter.\
+        \n\n.rmbotfilters <marie/rose>\
+        \nUsage: Removes all filters of admin bots (Currently supported: Marie, Rose and their clones.) in the chat."
 })

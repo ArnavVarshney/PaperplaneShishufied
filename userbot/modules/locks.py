@@ -1,8 +1,3 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-
 from telethon.tl.functions.messages import EditChatDefaultBannedRightsRequest
 from telethon.tl.types import ChatBannedRights
 
@@ -188,9 +183,9 @@ async def rem_locks(event):
 
 CMD_HELP.update({
     "locks":
-    ".lock <all (or) type(s)> or .unlock <all (or) type(s)>\
-\nUsage: Allows you to lock/unlock some common message types in the chat.\
-[NOTE: Requires proper admin rights in the chat !!]\
-\n\nAvailable message types to lock/unlock are: \
-\n`all, msg, media, sticker, gif, game, inline, poll, invite, pin, info`"
+        ".lock <all (or) type(s)> or .unlock <all (or) type(s)>\
+    \nUsage: Allows you to lock/unlock some common message types in the chat.\
+    [NOTE: Requires proper admin rights in the chat !!]\
+    \n\nAvailable message types to lock/unlock are: \
+    \n`all, msg, media, sticker, gif, game, inline, poll, invite, pin, info`"
 })

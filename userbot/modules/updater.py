@@ -1,14 +1,9 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """
 This module updates the userbot based on Upstream revision
 """
 
-from os import remove, execl
 import sys
+from os import remove, execl
 
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
@@ -38,7 +33,7 @@ async def upstream(ups):
     "For .update command, check if the bot is up to date, update if specified"
     await ups.edit("`Checking for updates, please wait....`")
     conf = ups.pattern_match.group(1)
-    off_repo = 'https://github.com/AvinashReddy3108/PaperplaneExtended.git'
+    off_repo = 'https://github.com/ArnavVarshney/PaperplaneShishufied.git'
 
     try:
         txt = "`Oops.. Updater cannot continue due to some problems occured`\n\n**LOGTRACE:**\n"
@@ -56,13 +51,6 @@ async def upstream(ups):
         return
 
     ac_br = repo.active_branch.name
-    if not await is_off_br(ac_br):
-        await ups.edit(
-            f'**[UPDATER]:**` Looks like you are using your own custom branch ({ac_br}). \
-            in that case, Updater is unable to identify which branch is to be merged. \
-            please checkout to any official branch`')
-        return
-
     try:
         repo.create_remote('upstream', off_repo)
     except BaseException:
@@ -109,8 +97,8 @@ async def upstream(ups):
 
 CMD_HELP.update({
     'update':
-    ".update\
-\nUsage: Checks if the main userbot repository has any updates and shows a changelog if so.\
-\n\n.update now\
-\nUsage: Updates your userbot, if there are any updates in the main userbot repository."
+        ".update\
+    \nUsage: Checks if the main userbot repository has any updates and shows a changelog if so.\
+    \n\n.update now\
+    \nUsage: Updates your userbot, if there are any updates in the main userbot repository."
 })

@@ -1,21 +1,14 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Thanks to @kandnub, for this awesome module !!
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """ Userbot module for reverse searching stickers and images on Google """
 
 import io
 import os
+import re
 import urllib
 from urllib.request import urlopen
+
 import requests
-from bs4 import BeautifulSoup
-import re
-from telethon.tl.types import MessageMediaPhoto
 from PIL import Image
+from bs4 import BeautifulSoup
 
 from userbot import bot, CMD_HELP
 from userbot.events import register
@@ -90,8 +83,8 @@ async def okgoogle(img):
             yeet.append(k.content)
         try:
             await img.client.send_file(entity=await
-                                       img.client.get_input_entity(img.chat_id
-                                                                   ),
+            img.client.get_input_entity(img.chat_id
+                                        ),
                                        file=yeet,
                                        reply_to=img)
         except TypeError:
@@ -111,7 +104,7 @@ async def ParseSauce(googleurl):
     try:
         for similar_image in soup.findAll('input', {'class': 'gLFyf'}):
             url = 'https://www.google.com/search?tbm=isch&q=' + \
-                urllib.parse.quote_plus(similar_image.get('value'))
+                  urllib.parse.quote_plus(similar_image.get('value'))
             results['similar_images'] = url
     except BaseException:
         pass
@@ -123,7 +116,6 @@ async def ParseSauce(googleurl):
 
 
 async def scam(results, lim):
-
     single = opener.open(results['similar_images']).read()
     decoded = single.decode('utf-8')
 
@@ -145,6 +137,6 @@ async def scam(results, lim):
 
 CMD_HELP.update({
     'reverse':
-    '.reverse\
-        \nUsage: Reply to a pic/sticker to revers-search it on Google Images !!'
+        '.reverse\
+            \nUsage: Reply to a pic/sticker to reverse-search it on Google Images !!'
 })

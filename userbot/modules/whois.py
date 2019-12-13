@@ -1,10 +1,3 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-# The entire source code is OSSRPL except 'whois' which is MPL
-# License: MPL and OSSRPL
 """ Userbot module for getiing info about any user on Telegram(including you!). """
 
 import os
@@ -13,13 +6,13 @@ from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
+
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
 @register(pattern=".whois(?: |$)(.*)", outgoing=True)
 async def who(event):
-
     await event.edit(
         "`Sit tight while I steal some data from Mark Zuckerburg...`")
 
@@ -149,6 +142,6 @@ async def fetch_info(replied_user, event):
 
 CMD_HELP.update({
     "whois":
-    ".whois <username> or reply to someones text with .whois\
-    \nUsage: Gets info of an user."
+        ".whois <username> or reply to someones text with .whois\
+        \nUsage: Gets info of an user."
 })

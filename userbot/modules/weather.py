@@ -1,16 +1,12 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """ Userbot module for getting the weather of a city. """
 
 import json
-from requests import get
 from datetime import datetime
+
+from pytz import country_names as c_n
 from pytz import country_timezones as c_tz
 from pytz import timezone as tz
-from pytz import country_names as c_n
+from requests import get
 
 from userbot import CMD_HELP, WEATHER_DEFCITY
 from userbot import OPEN_WEATHER_MAP_APPID as OWM_API
@@ -21,6 +17,8 @@ if WEATHER_DEFCITY:
     DEFCITY = WEATHER_DEFCITY
 else:
     DEFCITY = None
+
+
 # ====================
 
 
@@ -130,12 +128,12 @@ async def get_weather(weather):
         + f"**Humidity:** `{humidity}%`\n" +
         f"**Wind:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n" +
         f"**Sunrise:** `{sun(sunrise)}`\n" +
-        f"**Sunset:** `{sun(sunset)}`\n\n" + f"**{desc}**\n" +
-        f"`{cityname}, {fullc_n}`\n" + f"`{time}`")
+        f"**Sunset:** `{sun(sunset)}`\n" + f"**{desc}**\n" +
+        f"`{cityname}" + "\n{fullc_n}`\n" + f"`{time}`")
 
 
 CMD_HELP.update({
     "weather":
-    ".weather <city> or .weather <city>, <country name/code>\
-    \nUsage: Gets the weather of a city."
+        ".weather <city> or .weather <city>, <country name/code>\
+        \nUsage: Gets the weather of a city."
 })

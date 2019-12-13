@@ -1,14 +1,11 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-
-import aria2p
 from asyncio import sleep
 from os import system
+
+import aria2p
+from requests import get
+
 from userbot import LOGS, CMD_HELP
 from userbot.events import register
-from requests import get
 
 # Get best trackers for improved download speeds, thanks K-E-N-W-A-Y.
 trackers_list = get(
@@ -131,10 +128,10 @@ async def show_all(event):
     for download in downloads:
         msg = msg + "File: `" + str(download.name) + "`\nSpeed: " + str(
             download.download_speed_string()) + "\nProgress: " + str(
-                download.progress_string()) + "\nTotal Size: " + str(
-                    download.total_length_string()) + "\nStatus: " + str(
-                        download.status) + "\nETA:  " + str(
-                            download.eta_string()) + "\n\n"
+            download.progress_string()) + "\nTotal Size: " + str(
+            download.total_length_string()) + "\nStatus: " + str(
+            download.status) + "\nETA:  " + str(
+            download.eta_string()) + "\n\n"
     if len(msg) <= 4096:
         await event.edit("`On-going Downloads: `\n" + msg)
         await sleep(5)
@@ -199,17 +196,17 @@ async def check_progress_for_dl(gid, event, previous):
                 file.remove(force=True)
                 await event.edit(
                     "Download Auto Canceled :\n`{}`\nYour Torrent/Link is Dead."
-                    .format(file.name))
+                        .format(file.name))
 
 
 CMD_HELP.update({
     "aria":
-    ".aurl [URL] (or) .amag [Magnet Link] (or) .ator [path to torrent file]\
-    \nUsage: Downloads the file into your userbot server storage.\
-    \n\n.apause (or) .aresume\
-    \nUsage: Pauses/resumes on-going downloads.\
-    \n\n.aclear\
-    \nUsage: Clears the download queue, deleting all on-going downloads.\
-    \n\n.ashow\
-    \nUsage: Shows progress of the on-going downloads."
+        ".aurl [URL] (or) .amag [Magnet Link] (or) .ator [path to torrent file]\
+        \nUsage: Downloads the file into your userbot server storage.\
+        \n\n.apause (or) .aresume\
+        \nUsage: Pauses/resumes on-going downloads.\
+        \n\n.aclear\
+        \nUsage: Clears the download queue, deleting all on-going downloads.\
+        \n\n.ashow\
+        \nUsage: Shows progress of the on-going downloads."
 })

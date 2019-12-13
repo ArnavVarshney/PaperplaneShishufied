@@ -1,13 +1,9 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """ Userbot module containing commands related to android"""
 
 import re
-from requests import get
+
 from bs4 import BeautifulSoup
+from requests import get
 
 from userbot import CMD_HELP
 from userbot.events import register
@@ -22,13 +18,13 @@ async def magisk(request):
     """ magisk latest releases """
     magisk_dict = {
         "Stable":
-        "https://raw.githubusercontent.com/topjohnwu/magisk_files/master/stable.json",
+            "https://raw.githubusercontent.com/topjohnwu/magisk_files/master/stable.json",
         "Beta":
-        "https://raw.githubusercontent.com/topjohnwu/magisk_files/master/beta.json",
+            "https://raw.githubusercontent.com/topjohnwu/magisk_files/master/beta.json",
         "Canary (Release)":
-        "https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/release.json",
+            "https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/release.json",
         "Canary (Debug)":
-        "https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/debug.json"
+            "https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/debug.json"
     }
     releases = 'Latest Magisk Releases:\n'
     for name, release_url in magisk_dict.items():
@@ -37,6 +33,7 @@ async def magisk(request):
                     f'[APK v{data["app"]["version"]}]({data["app"]["link"]}) | ' \
                     f'[Uninstaller]({data["uninstaller"]["link"]})\n'
     await request.edit(releases)
+
 
 @register(outgoing=True, pattern=r"^.device(?: |$)(\S*)")
 async def device_info(request):
@@ -62,8 +59,8 @@ async def device_info(request):
             codename = item['device']
             model = item['model']
             reply += f'{brand} {name}\n' \
-                f'**Codename**: `{codename}`\n' \
-                f'**Model**: {model}\n\n'
+                     f'**Codename**: `{codename}`\n' \
+                     f'**Model**: {model}\n\n'
     else:
         reply = f"`Couldn't find info about {device}!`\n"
     await request.edit(reply)
@@ -97,8 +94,8 @@ async def codename_info(request):
             codename = item['device']
             model = item['model']
             reply += f'{brand} {name}\n' \
-                f'**Codename**: `{codename}`\n' \
-                f'**Model**: {model}\n\n'
+                     f'**Codename**: `{codename}`\n' \
+                     f'**Model**: {model}\n\n'
     else:
         reply = f"`Couldn't find {device} codename!`\n"
     await request.edit(reply)
@@ -121,8 +118,8 @@ async def devices_specifications(request):
     all_brands = BeautifulSoup(
         get('https://www.devicespecifications.com/en/brand-more').content,
         'lxml').find('div', {
-            'class': 'brand-listing-container-news'
-        }).findAll('a')
+        'class': 'brand-listing-container-news'
+    }).findAll('a')
     brand_page_url = None
     try:
         brand_page_url = [
@@ -151,7 +148,7 @@ async def devices_specifications(request):
         specifications = re.findall(r'<b>.*?<br/>', str(info))
         for item in specifications:
             title = re.findall(r'<b>(.*?)</b>', item)[0].strip()
-            data = re.findall(r'</b>: (.*?)<br/>', item)[0]\
+            data = re.findall(r'</b>: (.*?)<br/>', item)[0] \
                 .replace('<b>', '').replace('</b>', '').strip()
             reply += f'**{title}**: {data}\n'
     await request.edit(reply)
@@ -181,21 +178,21 @@ async def twrp(request):
     size = page.find("span", {"class": "filesize"}).text
     date = page.find("em").text.strip()
     reply = f'**Latest TWRP for {device}:**\n' \
-        f'[{dl_file}]({dl_link}) - __{size}__\n' \
-        f'**Updated:** __{date}__\n'
+            f'[{dl_file}]({dl_link}) - __{size}__\n' \
+            f'**Updated:** __{date}__\n'
     await request.edit(reply)
 
 
 CMD_HELP.update({
     "android":
-    ".magisk\
-\nGet latest Magisk releases\
-\n\n.device <codename>\
-\nUsage: Get info about android device codename or model.\
-\n\n.codename <brand> <device>\
-\nUsage: Search for android device codename.\
-\n\n.specs <brand> <device>\
-\nUsage: Get device specifications info.\
-\n\n.twrp <codename>\
-\nUsage: Get latest twrp download for android device."
+        ".magisk\
+    \nGet latest Magisk releases\
+    \n\n.device <codename>\
+    \nUsage: Get info about android device codename or model.\
+    \n\n.codename <brand> <device>\
+    \nUsage: Search for android device codename.\
+    \n\n.specs <brand> <device>\
+    \nUsage: Get device specifications info.\
+    \n\n.twrp <codename>\
+    \nUsage: Get latest twrp download for android device."
 })

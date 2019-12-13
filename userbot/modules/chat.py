@@ -1,10 +1,7 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
 """ Userbot module containing userid, chatid and log commands"""
 
 from asyncio import sleep
+
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, bot
 from userbot.events import register
 from userbot.modules.admin import get_user_from_event
@@ -156,21 +153,21 @@ async def sedNinjaToggle(event):
 
 CMD_HELP.update({
     "chat":
-    ".chatid\
-\nUsage: Fetches the current chat's ID\
-\n\n.userid\
-\nUsage: Fetches the ID of the user in reply, if its a forwarded message, finds the ID for the source.\
-\n\n.log\
-\nUsage: Forwards the message you've replied to in your bot logs group.\
-\n\n.kickme\
-\nUsage: Leave from a targeted group.\
-\n\n.unmutechat\
-\nUsage: Unmutes a muted chat.\
-\n\n.mutechat\
-\nUsage: Allows you to mute any chat.\
-\n\n.link <username/userid> : <optional text> (or) reply to someone's message with .link <optional text>\
-\nUsage: Generate a permanent link to the user's profile with optional custom text.\
-\n\n.regexninja on/off\
-\nUsage: Globally enable/disables the regex ninja module.\
-\nRegex Ninja module helps to delete the regex bot's triggering messages."
+        ".chatid\
+    \nUsage: Fetches the current chat's ID\
+    \n\n.userid\
+    \nUsage: Fetches the ID of the user in reply, if its a forwarded message, finds the ID for the source.\
+    \n\n.log\
+    \nUsage: Forwards the message you've replied to in your bot logs group.\
+    \n\n.kickme\
+    \nUsage: Leave from a targeted group.\
+    \n\n.unmutechat\
+    \nUsage: Unmutes a muted chat.\
+    \n\n.mutechat\
+    \nUsage: Allows you to mute any chat.\
+    \n\n.link <username/userid> : <optional text> (or) reply to someone's message with .link <optional text>\
+    \nUsage: Generate a permanent link to the user's profile with optional custom text.\
+    \n\n.regexninja on/off\
+    \nUsage: Globally enable/disables the regex ninja module.\
+    \nRegex Ninja module helps to delete the regex bot's triggering messages."
 })

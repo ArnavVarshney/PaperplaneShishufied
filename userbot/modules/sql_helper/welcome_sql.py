@@ -20,9 +20,6 @@ class Welcome(BASE):
         self.f_mesg_id = f_mesg_id
 
 
-Welcome.__table__.create(checkfirst=True)
-
-
 def get_welcome(chat_id):
     try:
         return SESSION.query(Welcome).get(str(chat_id))

@@ -1,19 +1,11 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-# You can find misc modules, which dont fit in anything xD
 """ Userbot module for other small commands. """
 
-from random import randint
-from asyncio import sleep
-from os import execl
-import sys
-import os
 import io
 import sys
-import json
+from asyncio import sleep
+from os import execl
+from random import randint
+
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
 from userbot.events import register
 
@@ -57,7 +49,7 @@ async def killdabot(event):
     await event.edit("`Goodbye *Windows XP shutdown sound*....`")
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n"
-                                        "Bot shut down")
+                                                       "Bot shut down")
     await bot.disconnect()
 
 
@@ -66,7 +58,7 @@ async def killdabot(event):
     await event.edit("`BRB... *PornHub intro*`")
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "#RESTART \n"
-                                        "Bot Restarted")
+                                                       "Bot Restarted")
     await bot.disconnect()
     # Spin a new instance of bot
     execl(sys.executable, sys.executable, *sys.argv)
@@ -79,28 +71,20 @@ async def bot_community(community):
     """ For .community command, just returns OG Paperplane's group link. """
     await community.edit(
         "Join RaphielGang's awesome userbot community: @userbot_support"
-        "\nDo note that Paperplane Extended is an unoficial fork of their "
+        "\nDo note that Paperplane Shishufied is an unofficial fork of their "
         "Paperplane project and it may get limited or no support for bugs.")
-
-
-@register(outgoing=True, pattern="^.support$")
-async def bot_support(wannahelp):
-    """ For .support command, just returns the group link. """
-    await wannahelp.edit(
-        "Join the Paperplane Extended Channel: @PaperplaneExtended\
-        \nJoin the Paperplane Extended Chat: @PaperplaneExtendedSupport")
 
 
 @register(outgoing=True, pattern="^.creator$")
 async def creator(e):
-    await e.edit("[AvinashReddy3108](https://t.me/AvinashReddy3108)")
+    await e.edit("[Arnav Varshney](https://t.me/musicophilic_arnav)")
 
 
 @register(outgoing=True, pattern="^.readme$")
 async def reedme(e):
     await e.edit(
         "Here's something for you to read:\n"
-        "\n[Paperplane Extended's README.md file](https://github.com/AvinashReddy3108/PaperplaneExtended/blob/sql-extended/README.md)"
+        "\n[Paperplane Shishufied's README.md file](https://github.com/ArnavVarshney/PaperplaneShishufied/README.md)"
         "\n[Setup Guide - Basic](https://telegra.ph/How-to-host-a-Telegram-Userbot-07-24)"
         "\n[Setup Guide - Google Drive](https://telegra.ph/How-To-Setup-GDrive-07-27)"
         "\n[Setup Guide - LastFM Module](https://telegra.ph/How-to-set-up-LastFM-module-for-Paperplane-userbot-08-10)"
@@ -126,7 +110,7 @@ async def repeat(rep):
 async def repo_is_here(wannasee):
     """ For .repo command, just returns the repo URL. """
     await wannasee.edit(
-        "Click [here](https://github.com/AvinashReddy3108/PaperplaneExtended) to open Paperplane Extended's GitHub page."
+        "Click [here](https://github.com/ArnavVarshney/PaperplaneShishufied) to open Paperplane Shishufied's GitHub page."
     )
 
 
@@ -156,21 +140,21 @@ async def raw(event):
 
 CMD_HELP.update({
     'random':
-    '.random <item1> <item2> ... <itemN>\
-\nUsage: Get a random item from the list of items.'
+        '.random <item1> <item2> ... <itemN>\
+    \nUsage: Get a random item from the list of items.'
 })
 
 CMD_HELP.update({
     'sleep':
-    '.sleep <seconds>\
-\nUsage: Userbots get tired too. Let yours snooze for a few seconds.'
+        '.sleep <seconds>\
+    \nUsage: Userbots get tired too. Let yours snooze for a few seconds.'
 })
 
 CMD_HELP.update({
     "shutdown":
-    ".shutdown\
-\nUsage: Sometimes you need to shut down your bot. Sometimes you just hope to\
-hear Windows XP shutdown sound... but you don't."
+        ".shutdown\
+    \nUsage: Sometimes you need to shut down your bot. Sometimes you just hope to\
+    hear Windows XP shutdown sound... but you don't."
 })
 
 CMD_HELP.update(
@@ -179,20 +163,20 @@ CMD_HELP.update(
 
 CMD_HELP.update({
     'community':
-    ".community\
-\nUsage: Join the awesome Paperplane userbot community !!"
+        ".community\
+    \nUsage: Join the awesome Paperplane userbot community !!"
 })
 
 CMD_HELP.update({
     'repo':
-    '.repo\
-\nUsage: If you are curious what makes the userbot work, this is what you need.'
+        '.repo\
+    \nUsage: If you are curious what makes the userbot work, this is what you need.'
 })
 
 CMD_HELP.update({
     "readme":
-    ".readme\
-\nUsage: Provide links to setup the userbot and it's modules."
+        ".readme\
+    \nUsage: Provide links to setup the userbot and it's modules."
 })
 
 CMD_HELP.update(
@@ -201,8 +185,8 @@ CMD_HELP.update(
 
 CMD_HELP.update({
     "repeat":
-    ".repeat <no.> <text>\
-\nUsage: Repeats the text for a number of times. Don't confuse this with spam tho."
+        ".repeat <no.> <text>\
+    \nUsage: Repeats the text for a number of times. Don't confuse this with spam tho."
 })
 
 CMD_HELP.update({"restart": ".restart\
@@ -210,6 +194,6 @@ CMD_HELP.update({"restart": ".restart\
 
 CMD_HELP.update({
     "raw":
-    ".raw\
-\nUsage: Get detailed JSON-like formatted data about replied message."
+        ".raw\
+    \nUsage: Get detailed JSON-like formatted data about replied message."
 })

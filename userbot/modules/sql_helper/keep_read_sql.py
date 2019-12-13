@@ -14,9 +14,6 @@ class KRead(BASE):
         self.groupid = str(sender)
 
 
-KRead.__table__.create(checkfirst=True)
-
-
 def is_kread():
     try:
         return SESSION.query(KRead).all()

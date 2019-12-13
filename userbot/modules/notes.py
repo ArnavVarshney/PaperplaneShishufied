@@ -1,13 +1,9 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """ Userbot module containing commands for keeping notes. """
+
+from asyncio import sleep
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.events import register
-from asyncio import sleep
 
 
 @register(outgoing=True, pattern="^.notes$")
@@ -146,15 +142,15 @@ async def kick_marie_notes(kick):
 
 CMD_HELP.update({
     "notes":
-    "\
-#<notename>\
-\nUsage: Gets the specified note.\
-\n\n.save <notename> <notedata> or reply to a message with .save <notename>\
-\nUsage: Saves the replied message as a note with the notename. (Works with pics, docs, and stickers too!)\
-\n\n.notes\
-\nUsage: Gets all saved notes in a chat.\
-\n\n.clear <notename>\
-\nUsage: Deletes the specified note.\
-\n\n.rmbotnotes <marie/rose>\
-\nUsage: Removes all notes of admin bots (Currently supported: Marie, Rose and their clones.) in the chat."
+        "\
+    #<notename>\
+    \nUsage: Gets the specified note.\
+    \n\n.save <notename> <notedata> or reply to a message with .save <notename>\
+    \nUsage: Saves the replied message as a note with the notename. (Works with pics, docs, and stickers too!)\
+    \n\n.notes\
+    \nUsage: Gets all saved notes in a chat.\
+    \n\n.clear <notename>\
+    \nUsage: Deletes the specified note.\
+    \n\n.rmbotnotes <marie/rose>\
+    \nUsage: Removes all notes of admin bots (Currently supported: Marie, Rose and their clones.) in the chat."
 })

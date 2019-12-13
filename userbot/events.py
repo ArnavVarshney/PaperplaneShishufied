@@ -1,8 +1,3 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """ Userbot module for managing events.
  One of the main components of the userbot. """
 
@@ -19,7 +14,6 @@ from userbot import bot, BOTLOG_CHATID, LOGSPAMMER
 
 
 def register(**args):
-    """ Register a new event. """
     pattern = args.get('pattern', None)
     disable_edited = args.get('disable_edited', False)
     ignore_unsafe = args.get('ignore_unsafe', False)
@@ -67,36 +61,21 @@ def register(**args):
             try:
                 await func(check)
 
-            # Thanks to @kandnub for this HACK.
-            # Raise StopPropagation to Raise StopPropagation
-            # This needed for AFK to working properly
-
             except events.StopPropagation:
                 raise events.StopPropagation
-            # This is a gay exception and must be passed out. So that it doesnt spam chats
             except KeyboardInterrupt:
                 pass
             except BaseException:
-
-                # Check if we have to disable it.
-                # If not silence the log spam on the console,
-                # with a dumb except.
-
                 if not disable_errors:
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
                     text = "**USERBOT ERROR REPORT**\n"
-                    link = "[PaperplaneExtended Support Chat](https://t.me/PaperplaneExtendedSupport)"
-                    text += "If you want to, you can report it"
-                    text += f"- just forward this message to {link}.\n"
-                    text += "Nothing is logged except the fact of error and date\n"
-
                     ftext = "========== DISCLAIMER =========="
-                    ftext += "\nThis file uploaded ONLY here,"
-                    ftext += "\nwe logged only fact of error and date,"
-                    ftext += "\nwe respect your privacy,"
-                    ftext += "\nyou may not report this error if you've"
-                    ftext += "\nany confidential data here, no one will see your data\n"
+                    ftext += "\nThis file has been uploaded ONLY here,"
+                    ftext += "\nWe logged only fact of error and date,"
+                    ftext += "\nwe respected your privacy,"
+                    ftext += "\nwou may not report this error if you've"
+                    ftext += "\nwny confidential data here; no one will see your data\n"
                     ftext += "================================\n\n"
                     ftext += "--------BEGIN USERBOT TRACEBACK LOG--------\n"
                     ftext += "\nDate: " + date
@@ -119,7 +98,7 @@ def register(**args):
                                                   stderr=asyncsub.PIPE)
                     stdout, stderr = await process.communicate()
                     result = str(stdout.decode().strip()) \
-                        + str(stderr.decode().strip())
+                             + str(stderr.decode().strip())
 
                     ftext += result
 

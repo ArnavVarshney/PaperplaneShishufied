@@ -1,8 +1,3 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """ Userbot help command """
 
 from userbot import CMD_HELP
@@ -23,6 +18,6 @@ async def help(event):
             \nUsage: .help <module name>")
         string = ""
         for i in CMD_HELP:
-            string += "`" + str(i)
+            string += "`" + 'ℹ️' + str(i)
             string += "`\n"
         await event.reply(string)

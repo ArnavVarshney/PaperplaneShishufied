@@ -1,19 +1,12 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-# The entire source code is OSSRPL except 'makeqr and getqr' which is MPL
-# License: MPL and OSSRPL
 """ Userbot module containing commands related to QR Codes. """
 
-import os
 import asyncio
+import os
+from venv import logger
 
-import qrcode
 import barcode
+import qrcode
 from barcode.writer import ImageWriter
-
 from bs4 import BeautifulSoup
 
 from userbot import CMD_HELP
@@ -138,16 +131,16 @@ async def make_qr(makeqr):
 
 CMD_HELP.update({
     'qr':
-    ".makeqr <content>\
-\nUsage: Make a QR Code from the given content.\
-\nExample: .makeqr www.google.com\
-\nNote: use .decode <reply to barcode/qrcode> to get decoded content."
+        ".makeqr <content>\
+    \nUsage: Make a QR Code from the given content.\
+    \nExample: .makeqr www.google.com\
+    \nNote: use .decode <reply to barcode/qrcode> to get decoded content."
 })
 
 CMD_HELP.update({
     'barcode':
-    ".barcode <content>\
-\nUsage: Make a BarCode from the given content.\
-\nExample: .barcode www.google.com\
-\nNote: use .decode <reply to barcode/qrcode> to get decoded content."
+        ".barcode <content>\
+    \nUsage: Make a BarCode from the given content.\
+    \nExample: .barcode www.google.com\
+    \nNote: use .decode <reply to barcode/qrcode> to get decoded content."
 })

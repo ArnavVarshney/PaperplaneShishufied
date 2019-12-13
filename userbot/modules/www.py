@@ -1,8 +1,3 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """ Userbot module containing commands related to the \
     Information Superhighway (yes, Internet). """
 
@@ -10,6 +5,7 @@ from datetime import datetime
 
 from speedtest import Speedtest
 from telethon import functions
+
 from userbot import CMD_HELP
 from userbot.events import register
 
@@ -44,7 +40,7 @@ def speed_convert(size):
     """
     Hi human, you can't read bytes?
     """
-    power = 2**10
+    power = 2 ** 10
     zero = 0
     units = {0: '', 1: 'Kb/s', 2: 'Mb/s', 3: 'Gb/s', 4: 'Tb/s'}
     while size > power:

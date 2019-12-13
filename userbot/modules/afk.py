@@ -1,21 +1,16 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """ Userbot module which contains afk-related commands """
 
 from random import choice, randint
-from asyncio import sleep
 
 from telethon.events import StopPropagation
 
-from userbot import (AFKREASON, COUNT_MSG, CMD_HELP, ISAFK, BOTLOG,
-                     BOTLOG_CHATID, USERS, PM_AUTO_BAN)
+from userbot import (AFKREASON, CMD_HELP, BOTLOG,
+                     BOTLOG_CHATID, PM_AUTO_BAN)
 from userbot.events import register
 
 try:
     from userbot.modules.sql_helper.globals import gvarstatus, addgvar, delgvar
+
     afk_db = True
 except AttributeError:
     afk_db = False
@@ -46,6 +41,8 @@ AFKSTR = [
     "Life is so short, there are so many things to do...\nI'm away doing one of them..",
     "I am not here right now...\nbut if I was...\n\nwouldn't that be awesome?",
 ]
+
+
 # =================================================================
 
 
@@ -191,8 +188,8 @@ async def type_afk_is_not_true(notafk):
 
 CMD_HELP.update({
     "afk":
-    ".afk [Optional Reason]\
-\nUsage: Sets you as afk.\nReplies to anyone who tags/PM's \
-you telling them that you are AFK(reason).\n\nSwitches off AFK when you type back anything, anywhere.\
-"
+        ".afk [Optional Reason]\
+    \nUsage: Sets you as afk.\nReplies to anyone who tags/PM's \
+    you telling them that you are AFK(reason).\n\nSwitches off AFK when you type back anything, anywhere.\
+    "
 })

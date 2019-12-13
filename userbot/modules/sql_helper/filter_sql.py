@@ -24,9 +24,6 @@ class Filters(BASE):
             and self.keyword == other.keyword)
 
 
-Filters.__table__.create(checkfirst=True)
-
-
 def get_filter(chat_id, keyword):
     try:
         return SESSION.query(Filters).get((str(chat_id), keyword))

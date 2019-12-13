@@ -1,26 +1,23 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """ Userbot module for keeping control who PM you. """
 
+from sqlalchemy.exc import IntegrityError
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.functions.messages import ReportSpamRequest
 from telethon.tl.types import User
-from sqlalchemy.exc import IntegrityError
 
 from userbot import (COUNT_PM, CMD_HELP, BOTLOG, BOTLOG_CHATID, PM_AUTO_BAN,
                      LASTMSG, LOGS)
-
 from userbot.events import register
 
 # ========================= CONSTANTS ============================
 UNAPPROVED_MSG = (
-    "`Hello! This is an automated message.\n\n`"
-    "`I haven't approved you to PM yet.`"
-    "`Please wait for me to look in, I mostly approve PMs.\n\n`"
-    "`Until then, please don't spam my PM, you'll get blocked and reported!`")
+    "`Heyy there! I am Arnav's userbot.\n\n`"
+    "`Don't hesitate. This is an automated mesaage.\n\n`"
+    "`My master hasn't approved you to PM yet.`"
+    "`Please wait for my master to look in. He mostly approve PMs unless you are retarded.\n\n`"
+    "`Until then, please don't spam his PM. By spamming you'll automatically get blocked & reported!!`")
+
+
 # =================================================================
 
 
@@ -280,17 +277,17 @@ async def unblockpm(unblock):
 
 CMD_HELP.update({
     "pmpermit":
-    "\
-.approve\
-\nUsage: Approves the mentioned/replied person to PM.\
-\n\n.disapprove\
-\nUsage: Disapproves the mentioned/replied person to PM.\
-\n\n.block\
-\nUsage: Blocks the person.\
-\n\n.unblock\
-\nUsage: Unblocks the person so they can PM you.\
-\n\n.notifoff\
-\nUsage: Clears/Disables any notifications of unapproved PMs.\
-\n\n.notifon\
-\nUsage: Allows notifications for unapproved PMs."
+        "\
+    .approve\
+    \nUsage: Approves the mentioned/replied person to PM.\
+    \n\n.disapprove\
+    \nUsage: Disapproves the mentioned/replied person to PM.\
+    \n\n.block\
+    \nUsage: Blocks the person.\
+    \n\n.unblock\
+    \nUsage: Unblocks the person so they can PM you.\
+    \n\n.notifoff\
+    \nUsage: Clears/Disables any notifications of unapproved PMs.\
+    \n\n.notifon\
+    \nUsage: Allows notifications for unapproved PMs."
 })

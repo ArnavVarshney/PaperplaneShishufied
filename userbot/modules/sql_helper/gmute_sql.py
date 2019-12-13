@@ -3,7 +3,7 @@ try:
 except ImportError:
     raise AttributeError
 
-from sqlalchemy import Column, String, UnicodeText
+from sqlalchemy import Column, String
 
 
 class GMute(BASE):
@@ -12,9 +12,6 @@ class GMute(BASE):
 
     def __init__(self, sender):
         self.sender = str(sender)
-
-
-GMute.__table__.create(checkfirst=True)
 
 
 def is_gmuted(sender_id):

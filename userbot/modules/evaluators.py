@@ -1,14 +1,10 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """ Userbot module for executing code and terminal commands from Telegram. """
 
 import asyncio
 from getpass import getuser
 from os import remove
 from sys import executable
+
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID
 from userbot.events import register
 
@@ -90,7 +86,7 @@ execute. Use .help exec for an example.```")
     else:
         clines = code.splitlines()
         codepre = clines[0] + "\n" + clines[1] + "\n" + clines[2] + \
-            "\n" + clines[3] + "..."
+                  "\n" + clines[3] + "..."
 
     command = "".join(f"\n {l}" for l in code.split("\n.strip()"))
     process = await asyncio.create_subprocess_exec(
@@ -101,7 +97,7 @@ execute. Use .help exec for an example.```")
         stderr=asyncio.subprocess.PIPE)
     stdout, stderr = await process.communicate()
     result = str(stdout.decode().strip()) \
-        + str(stderr.decode().strip())
+             + str(stderr.decode().strip())
 
     if result:
         if len(result) > 4096:
@@ -162,7 +158,7 @@ async def terminal_runner(term):
         stderr=asyncio.subprocess.PIPE)
     stdout, stderr = await process.communicate()
     result = str(stdout.decode().strip()) \
-        + str(stderr.decode().strip())
+             + str(stderr.decode().strip())
 
     if len(result) > 4096:
         output = open("output.txt", "w+")

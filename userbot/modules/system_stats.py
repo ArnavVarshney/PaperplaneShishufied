@@ -1,15 +1,11 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """ Userbot module for getting information about the server. """
 
 from asyncio import create_subprocess_shell as asyncrunapp
 from asyncio.subprocess import PIPE as asyncPIPE
+from os import remove
 from platform import python_version, uname
 from shutil import which
-from os import remove
+
 from telethon import version
 
 from userbot import CMD_HELP, ALIVE_NAME
@@ -17,6 +13,8 @@ from userbot.events import register
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
+
+
 # ============================================
 
 
@@ -33,7 +31,7 @@ async def sysdetails(sysd):
 
         stdout, stderr = await fetch.communicate()
         result = str(stdout.decode().strip()) \
-            + str(stderr.decode().strip())
+                 + str(stderr.decode().strip())
 
         await sysd.edit("`" + result + "`")
     except FileNotFoundError:
@@ -52,7 +50,7 @@ async def bot_ver(event):
         )
         stdout, stderr = await ver.communicate()
         verout = str(stdout.decode().strip()) \
-            + str(stderr.decode().strip())
+                 + str(stderr.decode().strip())
 
         invokerev = "git rev-list --all --count"
         rev = await asyncrunapp(
@@ -62,7 +60,7 @@ async def bot_ver(event):
         )
         stdout, stderr = await rev.communicate()
         revout = str(stdout.decode().strip()) \
-            + str(stderr.decode().strip())
+                 + str(stderr.decode().strip())
 
         await event.edit("`Userbot Version: "
                          f"{verout}"
@@ -91,7 +89,7 @@ async def pipcheck(pip):
 
         stdout, stderr = await pipc.communicate()
         pipout = str(stdout.decode().strip()) \
-            + str(stderr.decode().strip())
+                 + str(stderr.decode().strip())
 
         if pipout:
             if len(pipout) > 4096:
@@ -161,10 +159,10 @@ CMD_HELP.update(
     \nUsage: Does a search of pip modules(s)."})
 CMD_HELP.update({
     "alive":
-    ".alive\
-    \nUsage: Type .alive to see wether your bot is working or not.\
-    \n\n.aliveu <text>\
-    \nUsage: Changes the 'user' in alive to the text you want.\
-    \n\n.resetalive\
-    \nUsage: Resets the user to default."
+        ".alive\
+        \nUsage: Type .alive to see wether your bot is working or not.\
+        \n\n.aliveu <text>\
+        \nUsage: Changes the 'user' in alive to the text you want.\
+        \n\n.resetalive\
+        \nUsage: Resets the user to default."
 })

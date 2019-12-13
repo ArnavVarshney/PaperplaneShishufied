@@ -1,15 +1,11 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
 """ Userbot module containing various sites direct links generators"""
 
-from os import popen
+import json
 import re
 import urllib.parse
-import json
+from os import popen
 from random import choice
+
 import requests
 from bs4 import BeautifulSoup
 from humanize import naturalsize
@@ -231,7 +227,7 @@ def sourceforge(url: str) -> str:
     reply = f"Mirrors for __{file_path.split('/')[-1]}__\n"
     project = re.findall(r'projects?/(.*?)/files', link)[0]
     mirrors = f'https://sourceforge.net/settings/mirror_choices?' \
-        f'projectname={project}&filename={file_path}'
+              f'projectname={project}&filename={file_path}'
     page = BeautifulSoup(requests.get(mirrors).content, 'html.parser')
     info = page.find('ul', {'id': 'mirrorList'}).findAll('li')
     for mirror in info[1:]:
@@ -348,10 +344,10 @@ def useragent():
 
 CMD_HELP.update({
     "direct":
-    ".direct <url>\n"
-    "Usage: Reply to a link or paste a URL to\n"
-    "generate a direct download link\n\n"
-    "List of supported URLs:\n"
-    "`Google Drive - MEGA.nz - Cloud Mail - Yandex.Disk - AFH - "
-    "ZippyShare - MediaFire - SourceForge - OSDN - GitHub`"
+        ".direct <url>\n"
+        "Usage: Reply to a link or paste a URL to\n"
+        "generate a direct download link\n\n"
+        "List of supported URLs:\n"
+        "`Google Drive - MEGA.nz - Cloud Mail - Yandex.Disk - AFH - "
+        "ZippyShare - MediaFire - SourceForge - OSDN - GitHub`"
 })

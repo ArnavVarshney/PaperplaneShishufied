@@ -1,11 +1,7 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
 """ Userbot module containing commands for keeping global notes. """
 
-from userbot.events import register
 from userbot import CMD_HELP, BOTLOG_CHATID
+from userbot.events import register
 
 
 @register(outgoing=True,
@@ -41,7 +37,7 @@ async def on_snip_save(event):
     """ For .snip command, saves snips for future use. """
     try:
         from userbot.modules.sql_helper.snips_sql import add_snip
-    except AtrributeError:
+    except:
         await event.edit("`Running on Non-SQL mode!`")
         return
     keyword = event.pattern_match.group(1)
@@ -114,14 +110,14 @@ async def on_snip_delete(event):
 
 CMD_HELP.update({
     "snips":
-    "\
-$<snip_name>\
-\nUsage: Gets the specified snip, anywhere.\
-\n\n.snip <name> <data> or reply to a message with .snip <name>\
-\nUsage: Saves the message as a snip (global note) with the name. (Works with pics, docs, and stickers too!)\
-\n\n.snips\
-\nUsage: Gets all saved snips.\
-\n\n.remsnip <snip_name>\
-\nUsage: Deletes the specified snip.\
-"
+        "\
+    $<snip_name>\
+    \nUsage: Gets the specified snip, anywhere.\
+    \n\n.snip <name> <data> or reply to a message with .snip <name>\
+    \nUsage: Saves the message as a snip (global note) with the name. (Works with pics, docs, and stickers too!)\
+    \n\n.snips\
+    \nUsage: Gets all saved snips.\
+    \n\n.remsnip <snip_name>\
+    \nUsage: Deletes the specified snip.\
+    "
 })

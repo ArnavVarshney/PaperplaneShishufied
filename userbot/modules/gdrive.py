@@ -1,28 +1,23 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-
 import asyncio
+import json
 import math
 import os
 import time
-from pySmartDL import SmartDL
-from telethon import events
+from mimetypes import guess_type
+
+import httplib2
 from apiclient.discovery import build
 from apiclient.http import MediaFileUpload
-from apiclient.errors import ResumableUploadError
 from oauth2client.client import OAuth2WebServerFlow
 from oauth2client.file import Storage
-from oauth2client import file, client, tools
+from pySmartDL import SmartDL
+from telethon import events
+
 from userbot import (G_DRIVE_CLIENT_ID, G_DRIVE_CLIENT_SECRET,
                      G_DRIVE_AUTH_TOKEN_DATA, GDRIVE_FOLDER_ID, BOTLOG_CHATID,
                      TEMP_DOWNLOAD_DIRECTORY, CMD_HELP, LOGS)
 from userbot.events import register
-from mimetypes import guess_type
-import httplib2
-import subprocess
-from userbot.modules.upload_download import progress, humanbytes, time_formatter
+from userbot.modules.upload_download import progress, humanbytes
 
 # Path to token json file, it should be in same directory as script
 G_DRIVE_TOKEN_FILE = "./auth_token.txt"
@@ -42,6 +37,7 @@ G_DRIVE_DIR_MIME_TYPE = "application/vnd.google-apps.folder"
 @register(pattern=r"^.gdrive(?: |$)(.*)", outgoing=True)
 async def gdrive_upload_function(dryb):
     """ For .gdrive command, upload files to google drive. """
+    global required_file_name
     await dryb.edit("Processing ...")
     input_str = dryb.pattern_match.group(1)
     if CLIENT_ID is None or CLIENT_SECRET is None:
@@ -97,7 +93,7 @@ async def gdrive_upload_function(dryb):
         if downloader.isSuccessful():
             await dryb.edit(
                 "Downloaded to `{}` successfully !!\nInitiating Upload to Google Drive.."
-                .format(downloaded_file_name))
+                    .format(downloaded_file_name))
             required_file_name = downloaded_file_name
         else:
             await dryb.edit("Incorrect URL\n{}".format(url))
@@ -107,7 +103,7 @@ async def gdrive_upload_function(dryb):
             required_file_name = input_str
             await dryb.edit(
                 "Found `{}` in local server, Initiating Upload to Google Drive.."
-                .format(input_str))
+                    .format(input_str))
         else:
             await dryb.edit(
                 "File not found in local server. Give me a valid file path !")
@@ -126,7 +122,7 @@ async def gdrive_upload_function(dryb):
             required_file_name = downloaded_file_name
             await dryb.edit(
                 "Downloaded to `{}` Successfully !!\nInitiating Upload to Google Drive.."
-                .format(downloaded_file_name))
+                    .format(downloaded_file_name))
     if required_file_name:
         if G_DRIVE_AUTH_TOKEN_DATA is not None:
             with open(G_DRIVE_TOKEN_FILE, "w") as t_file:
@@ -442,16 +438,16 @@ async def gdrive_search(http, search_query):
 
 CMD_HELP.update({
     "gdrive":
-    ".gdrive <file_path / reply / URL|file_name>\
-    \nUsage: Uploads the file in reply , URL or file path in server to your Google Drive.\
-    \n\n.gsetf <GDrive Folder URL>\
-    \nUsage: Sets the folder to upload new files to.\
-    \n\n.gsetclear\
-    \nUsage: Reverts to default upload destination.\
-    \n\n.gfolder\
-    \nUsage: Shows your current upload destination/folder.\
-    \n\n.list <query>\
-    \nUsage: Looks for files and folders in your Google Drive.\
-    \n\n.ggd <path_to_folder_in_server>\
-    \nUsage: Uploads all the files in the directory to a folder in Google Drive."
+        ".gdrive <file_path / reply / URL|file_name>\
+        \nUsage: Uploads the file in reply , URL or file path in server to your Google Drive.\
+        \n\n.gsetf <GDrive Folder URL>\
+        \nUsage: Sets the folder to upload new files to.\
+        \n\n.gsetclear\
+        \nUsage: Reverts to default upload destination.\
+        \n\n.gfolder\
+        \nUsage: Shows your current upload destination/folder.\
+        \n\n.list <query>\
+        \nUsage: Looks for files and folders in your Google Drive.\
+        \n\n.ggd <path_to_folder_in_server>\
+        \nUsage: Uploads all the files in the directory to a folder in Google Drive."
 })

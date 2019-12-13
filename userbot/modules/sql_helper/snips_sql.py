@@ -3,7 +3,7 @@ try:
 except ImportError:
     raise AttributeError
 
-from sqlalchemy import Column, UnicodeText, LargeBinary, Numeric
+from sqlalchemy import Column, UnicodeText, Numeric
 
 
 class Snips(BASE):
@@ -16,9 +16,6 @@ class Snips(BASE):
         self.snip = snip
         self.reply = reply
         self.f_mesg_id = f_mesg_id
-
-
-Snips.__table__.create(checkfirst=True)
 
 
 def get_snip(keyword):
