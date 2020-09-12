@@ -63,7 +63,7 @@ async def mention_afk(mention):
     EXCUSE = AFKREASON_SQL if afk_db else AFKREASON
     if mention.message.mentioned and not (await mention.get_sender()).bot:
         if ISAFK or ISAFK_SQL:
-            if mention.sender_id not in USERS:
+            if str(mention.sender_id) not in USERS:
                 if EXCUSE:
                     await mention.reply(f"I'm AFK right now.\
                     \n`{EXCUSE}`")
